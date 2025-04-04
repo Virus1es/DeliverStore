@@ -1,0 +1,6 @@
+@DeliverStore.Web_HostAddress = http://localhost:5150
+
+GET {{DeliverStore.Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,7 +1,6 @@
-﻿namespace DeliverStore.Infrastructure
-{
-    public class Class1
-    {
+﻿namespace DeliverStore.Infrastructure;
 
-    }
+public class Class1
+{
+
 }

@@ -1,7 +1,6 @@
-﻿namespace DeliverStore.Domain
-{
-    public class Class1
-    {
+﻿namespace DeliverStore.Domain;
 
-    }
+public class Class1
+{
+
 }

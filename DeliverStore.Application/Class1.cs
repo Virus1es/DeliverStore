@@ -1,7 +1,6 @@
-﻿namespace DeliverStore.Application
-{
-    public class Class1
-    {
+﻿namespace DeliverStore.Application;
 
-    }
+public class Class1
+{
+
 }

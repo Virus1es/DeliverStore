@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DeliverStore.Infrastructure\DeliverStore.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

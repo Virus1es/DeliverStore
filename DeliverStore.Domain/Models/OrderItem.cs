@@ -1,4 +1,4 @@
-﻿namespace DeliverStore.Domain;
+﻿namespace DeliverStore.Domain.Models;
 
 // сущность Покупка
 public class OrderItem

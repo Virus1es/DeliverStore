@@ -1,4 +1,4 @@
-﻿namespace DeliverStore.Domain;
+﻿namespace DeliverStore.Domain.Models;
 
 // сущность Корзина
 public class Cart

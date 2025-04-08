@@ -6,7 +6,13 @@ public class Order
 {
     private Order(Guid id, Guid customerId, DateOnly orderDate, DateOnly deliverDate, List<OrderItem> orderItems, string address, double totalPrice) 
     {
-
+        Id = id;
+        CustomerId = customerId;
+        OrderDate = orderDate;
+        DeliverDate = deliverDate;
+        OrderItems = orderItems;
+        Address = address;
+        TotalPrice = totalPrice;
     }
 
     public Guid Id { get; private set; }

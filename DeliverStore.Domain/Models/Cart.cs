@@ -8,5 +8,5 @@ public class Cart
     public int CustomerId { get; set; }
 
     // Список идентификаторов на OrderItem
-    public List<int> OrderItemsId { get; set; }
+    public List<int> OrderItemIds { get; set; }
 }

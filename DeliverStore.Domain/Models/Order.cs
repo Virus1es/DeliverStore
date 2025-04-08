@@ -8,10 +8,10 @@ public class Order
     public int CustomerId { get; set; }
 
     // Дата заказа
-    public DateTime OrderDate { get; set; }
+    public DateOnly OrderDate { get; set; }
 
     // Ожидаемая дата доставки
-    public DateTime DeliverDate { get; set; }
+    public DateOnly DeliverDate { get; set; }
 
     // Список покупок
     public List<OrderItem> OrderItems { get; set; }
@@ -20,5 +20,5 @@ public class Order
     public string Address { get; set; }
 
     // Общая стоимость заказа
-    public double Price { get; set; }
+    public double TotalPrice { get; set; }
 }

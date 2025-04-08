@@ -11,11 +11,11 @@ public class OrderItem
     public DateOnly DeliverDate { get; private set; }
 
     // Идентификатор товара
-    public int ProductId { get; private set; }
+    public Guid ProductId { get; private set; }
 
     public int Amount { get; private set; }
 
-    public static OrderItem CreateNewOrderItem(Guid id, DateOnly deliverDate, int productId, int amount)
+    public static OrderItem CreateNewOrderItem(Guid id, DateOnly deliverDate, Guid productId, int amount)
     {
         return new OrderItem()
         {

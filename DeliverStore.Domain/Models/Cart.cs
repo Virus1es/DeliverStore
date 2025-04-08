@@ -1,10 +1,8 @@
 ﻿namespace DeliverStore.Domain.Models;
 
-// сущность Корзина
 public class Cart
 {
-    // Идентификатор
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     // Идентификатор на покупателя
     public int CustomerId { get; set; }

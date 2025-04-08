@@ -1,10 +1,8 @@
 ﻿namespace DeliverStore.Domain.Models;
 
-// сущность Заказ
 public class Order
 {
-    // Идентификатор
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     // Идентификатор покупателя
     public int CustomerId { get; set; }

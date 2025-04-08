@@ -1,0 +1,24 @@
+﻿namespace DeliverStore.Domain.Models;
+
+public class Order
+{
+    public Guid Id { get; set; }
+
+    // Идентификатор покупателя
+    public Guid CustomerId { get; set; }
+
+    // Дата заказа
+    public DateOnly OrderDate { get; set; }
+
+    // Ожидаемая дата доставки
+    public DateOnly DeliverDate { get; set; }
+
+    // Список покупок
+    public List<OrderItem> OrderItems { get; set; }
+
+    // Адрес доставки
+    public string Address { get; set; }
+
+    // Общая стоимость заказа
+    public double TotalPrice { get; set; }
+}

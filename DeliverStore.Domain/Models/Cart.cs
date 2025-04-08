@@ -22,10 +22,10 @@ public class Cart
     public static Result Create(Guid id, Guid customerId)
     {
         if (id == Guid.Empty)
-            Result.Failure("Invalid Id");
+            return Result.Failure("Invalid Id for Cart");
 
         if (customerId == Guid.Empty)
-            Result.Failure("Invalid CustomerId for Cart");
+            return Result.Failure("Invalid CustomerId for Cart");
 
         Cart cart = new(id, customerId);
 

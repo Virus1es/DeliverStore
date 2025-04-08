@@ -5,7 +5,7 @@ public class Order
     public Guid Id { get; set; }
 
     // Идентификатор покупателя
-    public int CustomerId { get; set; }
+    public Guid CustomerId { get; set; }
 
     // Дата заказа
     public DateOnly OrderDate { get; set; }

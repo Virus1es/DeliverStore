@@ -9,7 +9,7 @@ public class OrderItem
     public DateOnly DeliverDate { get; set; }
 
     // Идентификатор товара
-    public int ProductId { get; set; }
+    public Guid ProductId { get; set; }
 
     public int Amount { get; set; }
 }

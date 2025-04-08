@@ -2,23 +2,23 @@
 
 public class Order
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; private set; }
 
     // Идентификатор покупателя
-    public int CustomerId { get; set; }
+    public int CustomerId { get; private set; }
 
     // Дата заказа
-    public DateOnly OrderDate { get; set; }
+    public DateOnly OrderDate { get; private set; }
 
     // Ожидаемая дата доставки
-    public DateOnly DeliverDate { get; set; }
+    public DateOnly DeliverDate { get; private set; }
 
     // Список покупок
-    public List<OrderItem> OrderItems { get; set; }
+    public List<OrderItem> OrderItems { get; private set; }
 
     // Адрес доставки
-    public string Address { get; set; }
+    public string Address { get; private set; }
 
     // Общая стоимость заказа
-    public double TotalPrice { get; set; }
+    public double TotalPrice { get; private set; }
 }

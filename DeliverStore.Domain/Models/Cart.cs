@@ -2,11 +2,11 @@
 
 public class Cart
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; private set; }
 
     // Идентификатор на покупателя
-    public int CustomerId { get; set; }
+    public int CustomerId { get; private set; }
 
     // Список идентификаторов на OrderItem
-    public List<int> OrderItemIds { get; set; }
+    public List<int> OrderItemIds { get; private set; }
 }

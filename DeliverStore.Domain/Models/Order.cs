@@ -2,6 +2,8 @@
 
 public class Order
 {
+    private Order() { }
+
     public Guid Id { get; private set; }
 
     // Идентификатор покупателя
@@ -21,4 +23,17 @@ public class Order
 
     // Общая стоимость заказа
     public double TotalPrice { get; private set; }
+
+    public static Order CreateNewOrder(Guid id, int customerId, DateOnly orderDate, DateOnly deliverDate, List<OrderItem> orderItems, string address, double totalPrice)
+    {
+        return new Order() { 
+            Id = id, 
+            CustomerId = customerId, 
+            OrderDate = orderDate, 
+            DeliverDate = deliverDate, 
+            OrderItems = orderItems, 
+            Address = address, 
+            TotalPrice = totalPrice 
+        };
+    }
 }

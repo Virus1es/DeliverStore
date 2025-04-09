@@ -1,4 +1,5 @@
 ﻿using CSharpFunctionalExtensions;
+using DeliverStore.Domain.Shared;
 
 namespace DeliverStore.Domain.Models;
 
@@ -25,25 +26,25 @@ public class Product
 
     public double Price { get; private set; }
 
-    public static Result Create(Guid id, string name, string description, string seller, string category, double price)
+    public static Result<Result<Product>, Error> Create(Guid id, string name, string description, string seller, string category, double price)
     {
         if(id == Guid.Empty)
-            return Result.Failure("Invalid Id for Product");
+            return Errors.General.ValueIsInvalid("Id");
 
         if (string.IsNullOrEmpty(name))
-            return Result.Failure("Invalid Name for Product");
+            return Errors.General.ValueIsInvalid("Name");
 
         if (string.IsNullOrEmpty(description))
-            return Result.Failure("Invalid Description for Product");
+            return Errors.General.ValueIsInvalid("Description");
 
         if (string.IsNullOrEmpty(seller))
-            return Result.Failure("Invalid Seller for Product");
+            return Errors.General.ValueIsInvalid("Seller");
 
         if (string.IsNullOrEmpty(category))
-            return Result.Failure("Invalid Category for Product");
+            return Errors.General.ValueIsInvalid("Category");
 
-        if(price < 0)
-            return Result.Failure("Invalid Price for Product");
+        if (price < 0)
+            return Errors.General.ValueIsInvalid("Price");
 
         Product product = new(id, name, description, seller, category, price);
 

@@ -1,4 +1,5 @@
 using CSharpFunctionalExtensions;
+using DeliverStore.Domain.Shared;
 
 namespace DeliverStore.Domain.Models;
 
@@ -35,29 +36,30 @@ public class Order
     // Общая стоимость заказа
     public double TotalPrice { get; private set; }
 
-    public static Result Create(Guid id, Guid customerId, DateOnly orderDate, DateOnly deliverDate, List<OrderItem> orderItems, 
-                                string address, double totalPrice)
+    public static Result<Result<Order>, Error> Create(Guid id, Guid customerId, DateOnly orderDate, 
+                                                      DateOnly deliverDate, List<OrderItem> orderItems, 
+                                                      string address, double totalPrice)
     {
         if(id == Guid.Empty)
-            return Result.Failure("Invalid Id for Order");
+            return Errors.General.ValueIsInvalid("Id");
 
-        if(customerId == Guid.Empty)
-            return Result.Failure("Invalid CustomerId for Order");
+        if (customerId == Guid.Empty)
+            return Errors.General.ValueIsInvalid("CustomerId");
 
         if (orderDate.CompareTo(DateOnly.Parse($"{DateTime.Now:dd.MM.yyyy}")) > 0)
-            return Result.Failure("Invalid OrderDate for Order");
+            return Errors.General.ValueIsInvalid("OrderDate");
 
         if (deliverDate.CompareTo(DateOnly.Parse($"{DateTime.Now:dd.MM.yyyy}")) > 0)
-            return Result.Failure("Invalid DeliverDate for Order");
+            return Errors.General.ValueIsInvalid("DeliverDate");
 
         if (orderItems.Count == 0)
-            return Result.Failure("Invalid OrderItems for Order");
+            return Errors.General.ValueIsInvalid("OrderItems");
 
         if (string.IsNullOrEmpty(address))
-            return Result.Failure("Invalid Address for Order");
+            return Errors.General.ValueIsInvalid("Address");
 
         if (totalPrice < 0d)
-            return Result.Failure("Invalid TotalPrice for Order");
+            return Errors.General.ValueIsInvalid("TotalPrice");
 
         Order order = new(id, customerId, orderDate, deliverDate, orderItems, address, totalPrice);
 

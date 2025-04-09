@@ -1,4 +1,5 @@
 ﻿using CSharpFunctionalExtensions;
+using DeliverStore.Domain.Shared;
 
 namespace DeliverStore.Domain.Models;
 
@@ -22,22 +23,22 @@ public class Customer
 
     public DateOnly Birthday { get; private set; }
 
-    public static Result Create(Guid id, string email, string phone, string fullName, DateOnly birthday)
+    public static Result<Result<Customer>, Error> Create(Guid id, string email, string phone, string fullName, DateOnly birthday)
     {
         if (id == Guid.Empty)
-            return Result.Failure("Invalid Id for Customer");
+            return Errors.General.ValueIsInvalid("Id");
 
         if (string.IsNullOrEmpty(email))
-            return Result.Failure("Invalid Email for Customer");
+            return Errors.General.ValueIsInvalid("Email");
 
         if (string.IsNullOrEmpty(phone))
-            return Result.Failure("Invalid Phone for Customer");
+            return Errors.General.ValueIsInvalid("Phone");
 
         if (string.IsNullOrEmpty(fullName))
-            return Result.Failure("Invalid FullName for Customer");
+            return Errors.General.ValueIsInvalid("FullName");
 
         if (birthday.CompareTo(DateOnly.Parse($"{DateTime.Now:dd.MM.yyyy}")) > 0)
-            return Result.Failure("Invalid Birthday for Customer");
+            return Errors.General.ValueIsInvalid("Birthday");
 
         Customer customer = new(id, email, phone, fullName, birthday);
 

@@ -23,7 +23,7 @@ public class Customer
 
     public DateOnly Birthday { get; private set; }
 
-    public static Result<Result<Customer>, Error> Create(Guid id, string email, string phone, string fullName, DateOnly birthday)
+    public static Result<Customer, Error> Create(Guid id, string email, string phone, string fullName, DateOnly birthday)
     {
         if (id == Guid.Empty)
             return Errors.General.ValueIsInvalid("Id");
@@ -40,8 +40,6 @@ public class Customer
         if (birthday.CompareTo(DateOnly.Parse($"{DateTime.Now:dd.MM.yyyy}")) > 0)
             return Errors.General.ValueIsInvalid("Birthday");
 
-        Customer customer = new(id, email, phone, fullName, birthday);
-
-        return Result.Success(customer);
+        return new Customer(id, email, phone, fullName, birthday);
     }
 }

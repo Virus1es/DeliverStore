@@ -23,7 +23,7 @@ public class OrderItem
 
     public int Amount { get; private set; }
 
-    public static Result<Result<OrderItem>, Error> Create(Guid id, DateOnly deliverDate, Guid productId, int amount)
+    public static Result<OrderItem, Error> Create(Guid id, DateOnly deliverDate, Guid productId, int amount)
     {
         if (id == Guid.Empty)
             return Errors.General.ValueIsInvalid("Id");
@@ -37,8 +37,6 @@ public class OrderItem
         if (amount <= 0)
             return Errors.General.ValueIsInvalid("Amount");
 
-        OrderItem orderItem = new(id, deliverDate, productId, amount);
-
-        return Result.Success(orderItem);
+        return new OrderItem(id, deliverDate, productId, amount);
     }
 }

@@ -20,7 +20,7 @@ public class Cart
     // Список идентификаторов на OrderItem
     public IReadOnlyList<Guid> OrderItemIds => _orderItemIds;
 
-    public static Result<Result<Cart>, Error> Create(Guid id, Guid customerId)
+    public static Result<Cart, Error> Create(Guid id, Guid customerId)
     {
         if (id == Guid.Empty)
             return Errors.General.ValueIsInvalid("Id");
@@ -28,8 +28,6 @@ public class Cart
         if (customerId == Guid.Empty)
             return Errors.General.ValueIsInvalid("CustomerId");
 
-        Cart cart = new(id, customerId);
-
-        return Result.Success(cart);
+        return new Cart(id, customerId);
     }
 }

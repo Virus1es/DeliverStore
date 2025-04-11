@@ -26,7 +26,7 @@ public class Product
 
     public double Price { get; private set; }
 
-    public static Result<Result<Product>, Error> Create(Guid id, string name, string description, string seller, string category, double price)
+    public static Result<Product, Error> Create(Guid id, string name, string description, string seller, string category, double price)
     {
         if(id == Guid.Empty)
             return Errors.General.ValueIsInvalid("Id");
@@ -46,9 +46,6 @@ public class Product
         if (price < 0)
             return Errors.General.ValueIsInvalid("Price");
 
-        Product product = new(id, name, description, seller, category, price);
-
-
-        return Result.Success(product);
+        return new Product(id, name, description, seller, category, price);
     }
 }

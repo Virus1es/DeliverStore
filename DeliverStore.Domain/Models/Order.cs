@@ -36,7 +36,7 @@ public class Order
     // Общая стоимость заказа
     public double TotalPrice { get; private set; }
 
-    public static Result<Result<Order>, Error> Create(Guid id, Guid customerId, DateOnly orderDate, 
+    public static Result<Order, Error> Create(Guid id, Guid customerId, DateOnly orderDate, 
                                                       DateOnly deliverDate, List<OrderItem> orderItems, 
                                                       string address, double totalPrice)
     {
@@ -61,8 +61,6 @@ public class Order
         if (totalPrice < 0d)
             return Errors.General.ValueIsInvalid("TotalPrice");
 
-        Order order = new(id, customerId, orderDate, deliverDate, orderItems, address, totalPrice);
-
-        return Result.Success(order);
+        return new Order(id, customerId, orderDate, deliverDate, orderItems, address, totalPrice);
     }
 }

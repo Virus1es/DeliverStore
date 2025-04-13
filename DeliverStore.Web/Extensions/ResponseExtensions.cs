@@ -32,7 +32,7 @@ public static class ResponseExtensions
     public static ActionResult<T> ToResponse<T>(this Result<T, Error> result)
     {
         if (result.IsSuccess)
-            return new OkObjectResult(result.Value);
+            return new OkObjectResult(Envelope.Ok(result.Value));
 
         var statusCode = result.Error.Type switch
         {

@@ -1,4 +1,5 @@
 using CSharpFunctionalExtensions;
+using DeliverStore.Domain.Models.ValueObjects;
 using DeliverStore.Domain.Shared;
 
 namespace DeliverStore.Domain.Models;
@@ -6,7 +7,7 @@ namespace DeliverStore.Domain.Models;
 // сущность Покупка
 public class OrderItem
 {
-    private OrderItem(Guid id, DateOnly deliverDate, Guid productId, int amount) {
+    private OrderItem(Guid id, DeliverDate deliverDate, Guid productId, Amount amount) {
         Id = id;
         DeliverDate = deliverDate;
         ProductId = productId;
@@ -16,27 +17,13 @@ public class OrderItem
     public Guid Id { get; private set; }
 
     // Ориентировочная дата доставки
-    public DateOnly DeliverDate { get; private set; }
+    public DeliverDate DeliverDate { get; private set; }
 
     // Идентификатор товара
     public Guid ProductId { get; private set; }
 
-    public int Amount { get; private set; }
+    public Amount Amount { get; private set; }
 
-    public static Result<OrderItem, Error> Create(Guid id, DateOnly deliverDate, Guid productId, int amount)
-    {
-        if (id == Guid.Empty)
-            return Errors.General.ValueIsInvalid("Id");
-
-        if (deliverDate.CompareTo(DateOnly.Parse($"{DateTime.Now:dd.MM.yyyy}")) > 0)
-            return Errors.General.ValueIsInvalid("DeliverDate");
-
-        if (productId == Guid.Empty)
-            return Errors.General.ValueIsInvalid("ProductId");
-
-        if (amount <= 0)
-            return Errors.General.ValueIsInvalid("Amount");
-
-        return new OrderItem(id, deliverDate, productId, amount);
-    }
+    public static Result<OrderItem, Error> Create(Guid id, DeliverDate deliverDate, Guid productId, Amount amount) => 
+        new OrderItem(id, deliverDate, productId, amount);
 }

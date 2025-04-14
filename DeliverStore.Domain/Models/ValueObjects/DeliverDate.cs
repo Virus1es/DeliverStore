@@ -3,20 +3,20 @@ using DeliverStore.Domain.Shared;
 
 namespace DeliverStore.Domain.Models.ValueObjects;
 
-public record Birthday
+public record DeliverDate
 {
     public DateOnly Value { get; }
 
-    private Birthday(DateOnly value)
+    private DeliverDate(DateOnly value)
     {
         Value = value;
     }
 
-    public static Result<Birthday, Error> Create(DateOnly value)
+    public static Result<DeliverDate, Error> Create(DateOnly value)
     {
         if (value.CompareTo(DateOnly.Parse($"{DateTime.Now:dd.MM.yyyy}")) > 0)
-            return Errors.General.ValueIsInvalid("Birthday");
+            return Errors.General.ValueIsInvalid("DeliverDate");
 
-        return new Birthday(value);
+        return new DeliverDate(value);
     }
 }

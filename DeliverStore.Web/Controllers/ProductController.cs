@@ -1,14 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DeliverStore.Application.Modules.CreateProduct;
+using DeliverStore.Web.Extensions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DeliverStore.Web.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class ProductController : ControllerBase
+public class ProductController : ApplicationController
 {
     [HttpPost]
-    public IActionResult Create()
+    public async Task<ActionResult<Guid>> Create(
+        [FromServices] CreateProductHandler handler,
+        [FromBody] CreateProductRequest request, CancellationToken cancellationToken)
     {
-        return Ok();
+        var result = await handler.Handle(request, cancellationToken);
+
+        return result.ToResponse();
     }
 }

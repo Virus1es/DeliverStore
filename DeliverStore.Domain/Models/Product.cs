@@ -1,11 +1,11 @@
 ﻿using CSharpFunctionalExtensions;
-using DeliverStore.Domain.Shared;
+using DeliverStore.Domain.Models.ValueObjects;
 
 namespace DeliverStore.Domain.Models;
 
 public class Product
 {
-    private Product(Guid id, string name, string description, string seller, string category, double price) {
+    private Product(Guid id, Name name, Description description, Seller seller, Category category, Price price) {
         Id = id;
         Name = name;
         Description = description;
@@ -16,36 +16,17 @@ public class Product
 
     public Guid Id { get; private set; }
 
-    public string Name { get; private set; }
+    public Name Name { get; private set; } = default!;
 
-    public string Description { get; private set; }
+    public Description Description { get; private set; } = default!;
 
-    public string Seller { get; private set; }
+    public Seller Seller { get; private set; } = default!;
 
-    public string Category { get; private set; }
+    public Category Category { get; private set; } = default!;
 
-    public double Price { get; private set; }
+    public Price Price { get; private set; }
 
-    public static Result<Product, Error> Create(Guid id, string name, string description, string seller, string category, double price)
-    {
-        if(id == Guid.Empty)
-            return Errors.General.ValueIsInvalid("Id");
-
-        if (string.IsNullOrEmpty(name))
-            return Errors.General.ValueIsInvalid("Name");
-
-        if (string.IsNullOrEmpty(description))
-            return Errors.General.ValueIsInvalid("Description");
-
-        if (string.IsNullOrEmpty(seller))
-            return Errors.General.ValueIsInvalid("Seller");
-
-        if (string.IsNullOrEmpty(category))
-            return Errors.General.ValueIsInvalid("Category");
-
-        if (price < 0)
-            return Errors.General.ValueIsInvalid("Price");
-
-        return new Product(id, name, description, seller, category, price);
-    }
+    public static Result<Product> Create(Guid id, Name name, Description description, 
+                                         Seller seller, Category category, Price price) =>
+        new Product(id, name, description, seller, category, price);
 }

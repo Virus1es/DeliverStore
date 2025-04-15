@@ -1,12 +1,10 @@
-using CSharpFunctionalExtensions;
-
 namespace DeliverStore.Domain.Models;
 
 public class Cart
 {
     private List<Guid> _orderItemIds => [];
 
-    private Cart(Guid id, Guid customerId) { 
+    public Cart(Guid id, Guid customerId) { 
         Id = id; 
         CustomerId = customerId;
     }
@@ -18,17 +16,4 @@ public class Cart
 
     // Список идентификаторов на OrderItem
     public IReadOnlyList<Guid> OrderItemIds => _orderItemIds;
-
-    public static Result Create(Guid id, Guid customerId)
-    {
-        if (id == Guid.Empty)
-            return Result.Failure("Invalid Id for Cart");
-
-        if (customerId == Guid.Empty)
-            return Result.Failure("Invalid CustomerId for Cart");
-
-        Cart cart = new(id, customerId);
-
-        return Result.Success(cart);
-    }
 }

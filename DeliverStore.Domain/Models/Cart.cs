@@ -7,7 +7,7 @@ public class Cart
 {
     private List<Guid> _orderItemIds => [];
 
-    private Cart(Guid id, Guid customerId) { 
+    public Cart(Guid id, Guid customerId) { 
         Id = id; 
         CustomerId = customerId;
     }
@@ -19,15 +19,4 @@ public class Cart
 
     // Список идентификаторов на OrderItem
     public IReadOnlyList<Guid> OrderItemIds => _orderItemIds;
-
-    public static Result<Cart, Error> Create(Guid id, Guid customerId)
-    {
-        if (id == Guid.Empty)
-            return Errors.General.ValueIsInvalid("Id");
-
-        if (customerId == Guid.Empty)
-            return Errors.General.ValueIsInvalid("CustomerId");
-
-        return new Cart(id, customerId);
-    }
 }

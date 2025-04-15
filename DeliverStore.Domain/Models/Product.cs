@@ -5,7 +5,7 @@ namespace DeliverStore.Domain.Models;
 
 public class Product
 {
-    private Product(Guid id, Name name, Description description, Seller seller, Category category, Price price) {
+    public Product(Guid id, Name name, Description description, Seller seller, Category category, Price price) {
         Id = id;
         Name = name;
         Description = description;
@@ -25,8 +25,4 @@ public class Product
     public Category Category { get; private set; } = default!;
 
     public Price Price { get; private set; }
-
-    public static Result<Product> Create(Guid id, Name name, Description description, 
-                                         Seller seller, Category category, Price price) =>
-        new Product(id, name, description, seller, category, price);
 }

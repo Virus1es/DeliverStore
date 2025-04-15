@@ -5,7 +5,7 @@ namespace DeliverStore.Domain.Models;
 
 public class Customer
 {
-    private Customer(Guid id, Email email, Phone phone, FullName fullName, Birthday birthday) { 
+    public Customer(Guid id, Email email, Phone phone, FullName fullName, Birthday birthday) { 
         Id = id;
         Email = email;
         Phone = phone;
@@ -22,7 +22,4 @@ public class Customer
     public FullName FullName { get; private set; }
 
     public Birthday Birthday { get; private set; }
-
-    public static Result<Customer> Create(Guid id, Email email, Phone phone, FullName fullName, Birthday birthday) =>
-        new Customer(id, email, phone, fullName, birthday);
 }

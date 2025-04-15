@@ -6,7 +6,7 @@ namespace DeliverStore.Domain.Models;
 
 public class Order
 {
-    private Order(Guid id, Guid customerId, OrderDate orderDate, DeliverDate deliverDate, List<OrderItem> orderItems, 
+    public Order(Guid id, Guid customerId, OrderDate orderDate, DeliverDate deliverDate, List<OrderItem> orderItems, 
                   Address address, TotalPrice totalPrice) 
     {
         Id = id;
@@ -37,9 +37,4 @@ public class Order
 
     // Общая стоимость заказа
     public TotalPrice TotalPrice { get; private set; }
-
-    public static Result<Order> Create(Guid id, Guid customerId, OrderDate orderDate, 
-                                              DeliverDate deliverDate, List<OrderItem> orderItems, 
-                                              Address address, TotalPrice totalPrice) =>
-        new Order(id, customerId, orderDate, deliverDate, orderItems, address, totalPrice);
 }

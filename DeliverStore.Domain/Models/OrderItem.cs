@@ -7,7 +7,7 @@ namespace DeliverStore.Domain.Models;
 // сущность Покупка
 public class OrderItem
 {
-    private OrderItem(Guid id, DeliverDate deliverDate, Guid productId, Amount amount) {
+    public OrderItem(Guid id, DeliverDate deliverDate, Guid productId, Amount amount) {
         Id = id;
         DeliverDate = deliverDate;
         ProductId = productId;
@@ -23,7 +23,4 @@ public class OrderItem
     public Guid ProductId { get; private set; }
 
     public Amount Amount { get; private set; }
-
-    public static Result<OrderItem, Error> Create(Guid id, DeliverDate deliverDate, Guid productId, Amount amount) => 
-        new OrderItem(id, deliverDate, productId, amount);
 }

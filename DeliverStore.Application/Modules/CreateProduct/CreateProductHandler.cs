@@ -32,11 +32,7 @@ public class CreateProductHandler
             return priceResult.Error;
 
 
-        var productResult = Product.Create(productId, nameResult.Value, descriptionResult.Value, sellerResult.Value, categoryResult.Value, priceResult.Value);
-        if (productResult.IsFailure)
-            return Errors.General.ValueIsInvalid("Product");
-
-        var product = productResult.Value;
+        var product = new Product(productId, nameResult.Value, descriptionResult.Value, sellerResult.Value, categoryResult.Value, priceResult.Value);
 
         // сохранение в БД
 

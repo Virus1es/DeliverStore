@@ -1,6 +1,4 @@
-using CSharpFunctionalExtensions;
 using DeliverStore.Domain.Models.ValueObjects;
-using DeliverStore.Domain.Shared;
 
 namespace DeliverStore.Domain.Models;
 

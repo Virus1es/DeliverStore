@@ -1,6 +1,3 @@
-using CSharpFunctionalExtensions;
-using DeliverStore.Domain.Shared;
-
 namespace DeliverStore.Domain.Models;
 
 public class Cart
